@@ -2,7 +2,7 @@
 pragma solidity 0.8.30;
 
 
-// has mutiple users
+// has mutiple users 
 //store number and name
 // only owner can reset
 // emit events
@@ -15,6 +15,12 @@ contract SimpleStorage {
         string name;
         bool registered; // default is false
     }
+
+    address owner;
+
+    constructor () {
+        owner = msg.sender;
+    }  
 
     mapping (address => User) public users; // connects address to user
     address[] public userList; // stores all users/ registered address
@@ -29,4 +35,27 @@ contract SimpleStorage {
         users[msg.sender] = User (_number, _name, true);
         userList.push(msg.sender);
     }
-}
+
+
+    function getUser (address _user) view public returns (uint256, string memory) {
+        require(users[_user].registered, "user not registered");
+
+        User memory user = users[_user];
+        return (user.number, user.name);
+    }
+
+
+    function getAllUsers () public view returns (User[] memory) {
+        require (msg.sender == owner, "Only admin can call this function");
+
+        uint256 length = userList.length; // checks the ammount of users registered
+        User[] memory allUsers = new User[](length); // creates a new array to store those registered users 
+
+        for (uint256 i = 0; i < length; i++) {
+            address userAddress = userList[i];
+            allUsers[i] = users[userAddress];
+        }
+
+        return allUsers;
+    }
+}    
