@@ -6,6 +6,65 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getAllUsers",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "number",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "registered",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct SimpleStorage.User[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUser",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -100,11 +159,11 @@
 	},
 	"sources": {
 		"SimpleStorage.sol": {
-			"keccak256": "0x850ab3f616c2811c07d5d42163176d5041721f8947457abb4342bc4bd5e3c761",
+			"keccak256": "0xe19cf4986c21cce4b7f72911d8dcedbc1afa20a33cf5af24ce30b471aad4e40c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6d3010445d3f37e755e1712ce051d72b8cabbd08b020e017c39b44fc62cc2f39",
-				"dweb:/ipfs/QmTKSLAfA5y3ng3qbTGLMMtfMa8BGDmLnrPsNGtztEQg8F"
+				"bzz-raw://41db38f5920ae27a112ccc4ac72cdb74653d2df0c07e23cf6223f9ef4c86149c",
+				"dweb:/ipfs/QmabUQudpRNwN22ucnqRABqajfY3hrD4DPALVCHpKAfyUz"
 			]
 		}
 	},
