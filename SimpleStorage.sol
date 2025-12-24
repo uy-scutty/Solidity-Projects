@@ -1,13 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.30;
 
-
-// has mutiple users 
-//store number and name
-// only owner can reset
-// emit events
-
-
 contract SimpleStorage {
 
     struct User {
