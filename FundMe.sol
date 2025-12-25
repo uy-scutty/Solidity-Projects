@@ -22,7 +22,7 @@ contract FundMe {
 
 
 
-    function fund () public payable  {
+    function fund () external  payable  {
         uint256 ethInUsd =  getConversion(msg.value); // takes the amount of eth i want to deposit and converts to dollars
         require ( ethInUsd >= minimumUsd * 1e18, "Not enough of ETH"); // compares that dollar to set minimun
         amountFunded[msg.sender] += msg.value;
@@ -44,9 +44,24 @@ contract FundMe {
     }
 
 
-    function withdraw () public {
-        require(msg.sender == owner, "You don't own this contract");
-        payable(owner).transfer(address(this).balance);
+    // function withdraw () public {
+    //     require(msg.sender == owner, "You don't own this contract");
+    //     uint256 amount = address(this).balance;
+    //     (bool success, ) = owner.call{value: amount}("");
+    //     require(success, "ETH transfer failed");
 
-    }
+
+    // }
+
+
+    function withdraw() external {
+    require(msg.sender == owner, "You don't own this contract");
+
+    uint256 amount = address(this).balance;
+    require(amount > 0, "No ETH to withdraw");
+
+    (bool success, ) = owner.call{value: amount}("");
+    require(success, "ETH transfer failed");
+}
+
 }
